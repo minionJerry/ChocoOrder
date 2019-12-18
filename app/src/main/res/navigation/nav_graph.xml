@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/nav_graph.xml">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/loginFragment">
 
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.kanykeinu.chocoorder.ui.fragment.login.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productListFragment"
+        android:name="com.kanykeinu.chocoorder.ui.fragment.product_list.ProductListFragment"
+        android:label="product_list_fragment"
+        tools:layout="@layout/product_list_fragment" >
+        <action
+            android:id="@+id/action_productListFragment_to_orderListFragment"
+            app:destination="@id/orderListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderListFragment"
+        android:name="com.kanykeinu.chocoorder.ui.fragment.order.OrderListFragment"
+        android:label="order_list_fragment"
+        tools:layout="@layout/order_list_fragment" >
+        <action
+            android:id="@+id/action_orderListFragment_to_detailedOrderFragment"
+            app:destination="@id/detailedOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedOrderFragment"
+        android:name="com.kanykeinu.chocoorder.ui.fragment.order.DetailedOrderFragment"
+        android:label="detailed_order_fragment"
+        tools:layout="@layout/detailed_order_fragment" />
 </navigation>

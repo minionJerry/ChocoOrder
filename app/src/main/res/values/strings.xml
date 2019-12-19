@@ -5,4 +5,8 @@
     <string name="authorization">Sign In</string>
     <string name="enter">Sign in</string>
     <string name="error">Something went wrong</string>
+    <string name="price">Price:</string>
+    <string name="make_order">Make order</string>
+    <string name="total_price">Total price:</string>
+    <string name="_0">0</string>
 </resources>

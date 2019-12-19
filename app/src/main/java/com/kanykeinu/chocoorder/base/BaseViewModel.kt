@@ -5,27 +5,27 @@ import com.kanykeinu.chocoorder.di.components.DaggerViewModelInjector
 import com.kanykeinu.chocoorder.di.components.ViewModelInjector
 import com.kanykeinu.chocoorder.di.modules.NetworkModule
 import com.kanykeinu.chocoorder.ui.fragment.login.LoginViewModel
+import com.kanykeinu.chocoorder.ui.fragment.product_list.ProductListViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 abstract class BaseViewModel: ViewModel(){
+
+    private val compositeDisposable by lazy { CompositeDisposable() }
+
     private val injector: ViewModelInjector = DaggerViewModelInjector
         .builder()
         .networkModule(NetworkModule)
         .build()
 
-    private val compositeDisposable by lazy { CompositeDisposable() }
-
     init {
         inject()
     }
 
-    /**
-     * Injects the required dependencies
-     */
     private fun inject() {
         when (this) {
             is LoginViewModel -> injector.inject(this)
+            is ProductListViewModel -> injector.inject(this)
         }
     }
 

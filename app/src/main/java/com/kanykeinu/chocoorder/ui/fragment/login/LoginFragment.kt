@@ -36,6 +36,7 @@ class LoginFragment : Fragment() {
         binding.me = this
         binding.viewModel = viewModel
         observeData()
+        navigateToProductList()
     }
 
     fun login() {

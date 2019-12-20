@@ -5,6 +5,7 @@ import com.kanykeinu.chocoorder.di.components.DaggerViewModelInjector
 import com.kanykeinu.chocoorder.di.components.ViewModelInjector
 import com.kanykeinu.chocoorder.di.modules.NetworkModule
 import com.kanykeinu.chocoorder.ui.fragment.login.LoginViewModel
+import com.kanykeinu.chocoorder.ui.fragment.order.OrderListViewModel
 import com.kanykeinu.chocoorder.ui.fragment.product_list.ProductListViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -26,6 +27,7 @@ abstract class BaseViewModel: ViewModel(){
         when (this) {
             is LoginViewModel -> injector.inject(this)
             is ProductListViewModel -> injector.inject(this)
+            is OrderListViewModel -> injector.inject(this)
         }
     }
 

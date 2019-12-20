@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/padding_normal">
+
+            <TextView
+                android:id="@+id/order_label"
+                style="@style/TextDefaultStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/order" />
+
+            <TextView
+                android:id="@+id/order"
+                style="@style/TextDefaultStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                tools:text="3 December 2014" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/padding_normal"
+            android:paddingEnd="@dimen/padding_normal"
+            android:paddingBottom="@dimen/padding_small">
+
+            <TextView
+                android:id="@+id/total_label"
+                style="@style/TextDefaultStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_price" />
+
+            <TextView
+                android:id="@+id/total_price"
+                style="@style/TextDefaultStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                tools:text="$6647" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

@@ -9,23 +9,22 @@ import com.kanykeinu.chocoorder.R
 
 class MainActivity : AppCompatActivity() {
 
-    private var currentController: NavController? = null
+    private lateinit var currentController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         currentController =
             Navigation.findNavController(findViewById(R.id.container))
-//        NavigationUI.setupActionBarWithNavController(this, currentController)
     }
 
     override fun onBackPressed() {
-        if (!currentController!!.popBackStack()) {
+        if (!currentController.popBackStack()) {
             finish()
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return currentController!!.navigateUp()
+        return currentController.navigateUp()
     }
 }

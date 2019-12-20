@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.kanykeinu.chocoorder.R
-import com.kanykeinu.chocoorder.data.entity.product.ProductResponse
+import com.kanykeinu.chocoorder.data.entity.product.Product
 import com.kanykeinu.chocoorder.databinding.ItemProductListBinding
 import com.kanykeinu.chocoorder.util.loadImage
 
@@ -15,13 +15,13 @@ class ProductsAdapter(
     private val onDecrementClicked: (Int) -> Unit
 ) : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
 
-    var products: List<ProductResponse> = listOf()
+    var products: List<Product> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    val productMap: MutableMap<ProductResponse, Int> = mutableMapOf()
+    val productMap: MutableMap<Product, Int> = mutableMapOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = DataBindingUtil.inflate<ItemProductListBinding>(
@@ -45,10 +45,10 @@ class ProductsAdapter(
         private val binding: ItemProductListBinding,
         private val onIncrementClicked: (Int) -> Unit,
         private val onDecrementClicked: (Int) -> Unit,
-        private val productMap: MutableMap<ProductResponse, Int>
+        private val productMap: MutableMap<Product, Int>
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(product: ProductResponse) {
+        fun bind(product: Product) {
             var amount = 0
             with(product) {
                 binding.image.loadImage(picture)

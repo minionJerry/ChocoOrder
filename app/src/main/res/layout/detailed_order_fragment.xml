@@ -1,13 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.order.DetailedOrderFragment">
+<layout>
 
-    <TextView
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewmodel"
+            type="com.kanykeinu.chocoorder.ui.fragment.order.DetailedOrderViewModel" />
+        <variable
+            name="order"
+            type="com.kanykeinu.chocoorder.data.entity.order.Order" />
+        <variable
+            name="viewModel"
+            type="com.kanykeinu.chocoorder.ui.fragment.order.DetailedOrderViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        tools:context=".ui.fragment.order.DetailedOrderFragment">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/label"
+            style="@style/TextDefaultStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/order"
+            android:textSize="@dimen/text_size_big"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/order_date"
+            style="@style/TextDefaultStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:textSize="@dimen/text_size_big"
+            android:text="@{order.date}"
+            app:layout_constraintStart_toEndOf="@id/label"
+            app:layout_constraintTop_toTopOf="@id/label"
+            tools:text="4564" />
+
+        <TextView
+            android:id="@+id/total_label"
+            style="@style/TextDefaultStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:text="@string/total_price"
+            android:textSize="@dimen/text_size_big"
+            app:layout_constraintStart_toStartOf="@id/label"
+            app:layout_constraintTop_toBottomOf="@id/label" />
+
+        <TextView
+            android:id="@+id/total"
+            style="@style/TextDefaultStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:textSize="@dimen/text_size_big"
+            android:text="@{order.totalPrice}"
+            app:layout_constraintStart_toEndOf="@id/total_label"
+            app:layout_constraintTop_toTopOf="@id/total_label"
+            tools:text="4564" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_order_products"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/total_label"
+            tools:listitem="@layout/item_order_product_list" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{safeUnbox(viewModel.orderLoading) ? View.VISIBLE : View.GONE}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

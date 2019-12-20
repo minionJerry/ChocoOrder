@@ -2,11 +2,16 @@
     <string name="app_name">ChocoOrder</string>
     <string name="login">Sign in</string>
     <string name="password">Password</string>
-    <string name="authorization">Sign In</string>
+    <string name="authorization">Hello Chocorian!</string>
     <string name="enter">Sign in</string>
     <string name="error">Something went wrong</string>
     <string name="price">Price:</string>
     <string name="make_order">Make order</string>
     <string name="total_price">Total price:</string>
     <string name="_0">0</string>
+    <string name="order">Order:</string>
+    <string name="email">Email</string>
+    <string name="quantity">Quantity:</string>
+    <string name="order_history">Order history</string>
+    <string name="logout">Logout</string>
 </resources>

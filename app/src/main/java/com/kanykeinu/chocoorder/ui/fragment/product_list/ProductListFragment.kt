@@ -1,17 +1,15 @@
 package com.kanykeinu.chocoorder.ui.fragment.product_list
 
-import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 
 import com.kanykeinu.chocoorder.R
 import com.kanykeinu.chocoorder.databinding.ProductListFragmentBinding
@@ -36,20 +34,27 @@ class ProductListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setHasOptionsMenu(true)
         viewModel = ViewModelProviders.of(this, ViewModelFactory(this.requireContext()))
             .get(ProductListViewModel::class.java)
         binding.me = this
         binding.viewModel = viewModel
-        setViews()
+        setAdapter()
         observeData()
     }
 
-    private fun setViews() {
+    private fun setAdapter() {
         adapter = ProductsAdapter(
             onIncrementClicked = this::onIncrement,
             onDecrementClicked = this::onDecrement
         )
         binding.rvProductList.adapter = adapter
+        binding.rvProductList.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                RecyclerView.VERTICAL
+            )
+        )
     }
 
     private fun onIncrement(price: Int) {
@@ -67,22 +72,51 @@ class ProductListFragment : Fragment() {
     }
 
     private fun observeData() {
-        viewModel.error.observe(this, Observer {
-            binding.root.showSnackbar(it)
+        viewModel.error.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let { binding.root.showSnackbar(it) }
         })
-        viewModel.products.observe(this, Observer {
+        viewModel.products.observe(viewLifecycleOwner, Observer {
             adapter.products = it
         })
-    }
-
-    fun makeOrder() {
-        Log.d("Products", adapter.productMap.filterValues { it > 0 }.toString())
-        navigateToOrderList()
+        viewModel.orderSaved.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let {
+                if (it)
+                    navigateToOrderList()
+            }
+        })
     }
 
     private fun navigateToOrderList() {
         val orderListDirection =
             ProductListFragmentDirections.actionProductListFragmentToOrderListFragment()
         Navigation.findNavController(binding.root).navigate(orderListDirection)
+    }
+
+    fun makeOrder() {
+        val totalPrice = binding.totalPrice.text.toString()
+        viewModel.saveProducts(adapter.productMap.filterValues { it > 0 }, totalPrice)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.list_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.order_history -> {
+                navigateToOrderList()
+            }
+            R.id.logout -> {
+                viewModel.clearData()
+                navigateToLogin()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun navigateToLogin() {
+        val direction = ProductListFragmentDirections.actionProductListFragmentToLoginFragment()
+        findNavController(binding.root).navigate(direction)
     }
 }

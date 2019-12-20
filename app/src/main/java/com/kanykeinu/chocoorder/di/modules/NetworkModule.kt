@@ -1,8 +1,6 @@
 package com.kanykeinu.chocoorder.di.modules
 
-import com.google.gson.GsonBuilder
 import com.kanykeinu.chocoorder.data.network.api.ChocoApi
-import com.kanykeinu.chocoorder.di.scopes.ApplicationScope
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable

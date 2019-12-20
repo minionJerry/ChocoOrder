@@ -2,6 +2,7 @@ package com.kanykeinu.chocoorder.di.components
 
 import com.kanykeinu.chocoorder.di.modules.NetworkModule
 import com.kanykeinu.chocoorder.ui.fragment.login.LoginViewModel
+import com.kanykeinu.chocoorder.ui.fragment.order.OrderListViewModel
 import com.kanykeinu.chocoorder.ui.fragment.product_list.ProductListViewModel
 import dagger.Component
 import javax.inject.Singleton
@@ -20,4 +21,5 @@ interface ViewModelInjector {
 
     fun inject(loginViewModel: LoginViewModel)
     fun inject(productListViewModel: ProductListViewModel)
+    fun inject(orderListViewModel: OrderListViewModel)
 }

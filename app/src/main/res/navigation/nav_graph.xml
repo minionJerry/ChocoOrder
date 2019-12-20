@@ -8,10 +8,13 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.kanykeinu.chocoorder.ui.fragment.login.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="LoginFragment"
+        tools:layout="@layout/login_fragment">
         <action
             android:id="@+id/action_loginFragment_to_productListFragment"
-            app:destination="@id/productListFragment" />
+            app:destination="@id/productListFragment"
+            app:popUpTo="@+id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/productListFragment"
@@ -21,6 +24,11 @@
         <action
             android:id="@+id/action_productListFragment_to_orderListFragment"
             app:destination="@id/orderListFragment" />
+        <action
+            android:id="@+id/action_productListFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@+id/nav_graph.xml"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/orderListFragment"
@@ -35,5 +43,9 @@
         android:id="@+id/detailedOrderFragment"
         android:name="com.kanykeinu.chocoorder.ui.fragment.order.DetailedOrderFragment"
         android:label="detailed_order_fragment"
-        tools:layout="@layout/detailed_order_fragment" />
+        tools:layout="@layout/detailed_order_fragment" >
+        <argument
+            android:name="order"
+            app:argType="com.kanykeinu.chocoorder.data.entity.order.Order" />
+    </fragment>
 </navigation>

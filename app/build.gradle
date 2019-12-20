@@ -42,10 +42,8 @@ def rxjava_version = "2.2.8"
 def rxandroid_version = "2.1.1"
 def rxKotlin_version = "2.3.0"
 def dagger = '2.13'
-def daggerAndroid = '2.17'
 def glide = '4.9.0'
 def glideCompiler = '4.9.0'
-def room = '2.2.1'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -56,8 +54,8 @@ dependencies {
     implementation "com.google.android.material:material:$material_version"
 
     //navigation
-    implementation "androidx.navigation:navigation-fragment:$nav_version"
-    implementation "androidx.navigation:navigation-ui:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     //retrofit & okhttp
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
@@ -74,23 +72,13 @@ dependencies {
     //Dagger
     implementation "com.google.dagger:dagger:$dagger"
     kapt "com.google.dagger:dagger-compiler:$dagger"
-//    implementation "com.google.dagger:dagger-android:$daggerAndroid"
-//    implementation "com.google.dagger:dagger-android-support:$daggerAndroid"
-//    kapt "com.google.dagger:dagger-android-processor:$daggerAndroid"
 
     // Test
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
     /*--Glide--*/
     implementation "com.github.bumptech.glide:glide:$glide"
     kapt "com.github.bumptech.glide:compiler:$glideCompiler"
-
-    /*--Room--*/
-    implementation "androidx.room:room-runtime:$room"
-    kapt "androidx.room:room-compiler:$room"
 }

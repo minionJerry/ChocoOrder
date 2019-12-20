@@ -1,13 +1,11 @@
 package com.kanykeinu.chocoorder.data.entity.order
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.kanykeinu.chocoorder.data.entity.product.Product
-import java.util.*
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-@Entity
+@Parcelize
 data class Order(
-    @PrimaryKey
     val date: String,
-    val products: List<Product>
-)
+    val products: String,
+    val totalPrice: String
+) : Parcelable

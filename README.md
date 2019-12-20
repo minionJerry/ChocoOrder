@@ -7,4 +7,7 @@ Used technologies:
     - RxJava2
     - Dagger2
     - MVVM
-
+    
+    
+ ![Login Screen](https://github.com/minionJerry/ChocoOrder/blob/master/photo_2019-12-21_03-11-06.jpg)
+ ![Main Screen](https://github.com/minionJerry/ChocoOrder/blob/master/photo_2019-12-21_03-11-11.jpg)
